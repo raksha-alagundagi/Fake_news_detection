@@ -44,10 +44,10 @@ if 'username' not in st.session_state:
 # ----------------- GLOBAL CSS -----------------
 st.markdown("""
     <style>
-    /* Global Background - Solid Black */
+    /* Global Background - Dark Pink/Blue Gradient */
     .stApp {
-        background-color: #000000 !important;
-        background-image: none !important;
+        background: linear-gradient(135deg, #5A1846 0%, #0F172A 100%) !important;
+        background-attachment: fixed !important;
         color: #ffffff !important;
     }
     
@@ -161,9 +161,9 @@ st.markdown("""
 
     /* Text Area & Input Styling */
     div[data-testid="stTextArea"] textarea, div[data-testid="stTextInput"] input {
-        background-color: rgba(255, 255, 255, 0.03) !important;
+        background-color: #1e293b !important;
         color: #ffffff !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
         border-radius: 12px !important;
         padding: 1rem !important;
         font-size: 1.05rem !important;
@@ -173,7 +173,7 @@ st.markdown("""
     div[data-testid="stTextArea"] textarea:focus, div[data-testid="stTextInput"] input:focus {
         border-color: #58a6ff !important;
         box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.2) !important;
-        background-color: rgba(255, 255, 255, 0.06) !important;
+        background-color: #0f172a !important;
     }
     
     /* Login Form Container Box */
