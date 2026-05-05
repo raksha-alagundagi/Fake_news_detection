@@ -305,6 +305,13 @@ def render_header_footer():
 # ----------------- LOGIC -----------------
 @st.cache_resource
 def load_model_and_vectorizer():
+    """
+    Loads the pre-trained Logistic Regression model and TF-IDF vectorizer from disk.
+    Cached by Streamlit to avoid reloading on every user interaction.
+
+    Returns:
+        tuple: (model, vectorizer) if successful, (None, None) otherwise.
+    """
     try:
         model = joblib.load('model.pkl')
         vectorizer = joblib.load('vectorizer.pkl')
@@ -312,7 +319,20 @@ def load_model_and_vectorizer():
     except Exception as e:
         return None, None
 
-def clean_text(text):
+def clean_text(text: str) -> str:
+    """
+    Preprocesses the input text for prediction by:
+    1. Removing non-alphabet characters.
+    2. Converting text to lowercase.
+    3. Tokenizing and removing stop words (excluding 'not').
+    4. Applying Porter Stemming.
+
+    Args:
+        text (str): The raw text string to be cleaned.
+
+    Returns:
+        str: The cleaned and stemmed text string.
+    """
     if not isinstance(text, str):
         return ""
     text = re.sub('[^a-zA-Z]', ' ', text)
@@ -326,6 +346,12 @@ def clean_text(text):
     return ' '.join(words)
 
 def main():
+    """
+    Main Streamlit application logic:
+    - Handles the initial splash screen rendering.
+    - Renders the login screen.
+    - After login, renders the main interface for inputting text and generating predictions.
+    """
     # 1. SPLASH SCREEN
     if not st.session_state.splash_done:
         splash_placeholder = st.empty()

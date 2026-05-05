@@ -12,7 +12,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 import joblib
 
-# Download NLTK data
+# Download NLTK data required for text processing
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('punkt_tab')
@@ -21,6 +21,9 @@ DATA_URL = 'https://raw.githubusercontent.com/lutzhamel/fake-news/master/data/fa
 DATA_FILE = 'fake_or_real_news.csv'
 
 def download_data():
+    """
+    Downloads the dataset from the remote repository if it does not already exist locally.
+    """
     if not os.path.exists(DATA_FILE):
         print("Downloading dataset...")
         urllib.request.urlretrieve(DATA_URL, DATA_FILE)
@@ -28,7 +31,20 @@ def download_data():
     else:
         print("Dataset already exists.")
 
-def clean_text(text):
+def clean_text(text: str) -> str:
+    """
+    Preprocesses the input text by:
+    1. Removing non-alphabet characters.
+    2. Converting text to lowercase.
+    3. Tokenizing and removing stop words (excluding 'not').
+    4. Applying Porter Stemming to reduce words to their root forms.
+
+    Args:
+        text (str): The raw text string to be cleaned.
+
+    Returns:
+        str: The cleaned and stemmed text string.
+    """
     if not isinstance(text, str):
         return ""
     # Remove non-alphabet characters
@@ -43,6 +59,15 @@ def clean_text(text):
     return ' '.join(words)
 
 def train_model():
+    """
+    Executes the end-to-end machine learning pipeline:
+    1. Loads the dataset.
+    2. Preprocesses and cleans the text data.
+    3. Vectorizes text using TF-IDF.
+    4. Trains a Logistic Regression classifier.
+    5. Evaluates model performance using standard classification metrics.
+    6. Saves the trained model and vectorizer to disk.
+    """
     print("Loading data...")
     df = pd.read_csv(DATA_FILE)
     
