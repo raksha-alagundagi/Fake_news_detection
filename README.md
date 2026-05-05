@@ -18,7 +18,8 @@ The spread of misinformation and fake news is a critical challenge in the digita
 - **Frontend / UI**: Streamlit, HTML, CSS
 
 ## Screenshots / Output
-*(Add your project screenshot here)*
+*(Add your <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a120e2fc-77a1-496e-8a13-19d78bc152fe" />
+project screenshot here)*
 ![App Screenshot](screenshot.png)
 
 ## How to Run
